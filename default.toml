@@ -1,0 +1,28 @@
+# Use this file to templatize your application's native configuration files.
+# See the docs at https://www.habitat.sh/docs/create-packages-configure/.
+# You can safely delete this file if you don't need it.
+[jenkins]
+prefix = "/"
+
+[jenkins.session]
+timeout = 60
+
+[jenkins.http]
+enabled = true
+port = 80
+httpListenAddress = '0.0.0.0'
+
+[jenkins.https]
+enabled = false
+port = 443
+
+[jenkins.http2]
+enabled = false
+port = 80
+
+[jenkins.ajp13]
+enabled = false
+port = 8009
+
+[java]
+opts = "-XX:PermSize=512M -XX:MaxPermSize=2048M -Xmn128M -Xms1024M -Xmx2048M"
