@@ -26,3 +26,10 @@ port = 8009
 
 [java]
 opts = "-Djenkins.install.runSetupWizard=false -XX:PermSize=512M -XX:MaxPermSize=2048M -Xmn128M -Xms1024M -Xmx2048M"
+
+[admin]
+username = "admin"
+password = "admin"
+
+[config]
+slavePort = 9999
