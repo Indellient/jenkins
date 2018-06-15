@@ -1,25 +1,16 @@
-import jenkins.model.Jenkins;
+import jenkins.model.*
+import hudson.security.*
 
-final List<String> REQUIRED_PLUGINS = [
-  "aws-credentials",
-  "copyartifact",
-  "git",
-  "ssh-agent",
-  "tap",
-  "workflow-aggregator",
-]
-if (Jenkins.instance.pluginManager.plugins.collect {
-    it.shortName
-  }.intersect(REQUIRED_PLUGINS).size() != REQUIRED_PLUGINS.size()) {
-  REQUIRED_PLUGINS.collect {
-    Jenkins.instance.updateCenter.getPlugin(it).deploy(true)
-  }.each {
-    it.get()
-  }
-  Jenkins.instance.restart()
-}
+def instance = Jenkins.getInstance()
 
-Jenkins.instance.securityRealm.createAccount("admin","password123")
+def hudsonRealm = new HudsonPrivateSecurityRealm(false)
+hudsonRealm.createAccount("{{cfg.admin.username}}", "{{cfg.admin.password}}")
+instance.setSecurityRealm(hudsonRealm)
+instance.save()
 
-Jenkins.instance.setSlaveAgentPort(9999)
-Jenkins.instnace.save()
+def strategy = new FullControlOnceLoggedInAuthorizationStrategy()
+strategy.setAllowAnonymousRead(false)
+instance.setAuthorizationStrategy(strategy)
+
+instance.setSlaveAgentPort({{cfg.config.slavePort}})
+instance.save()
