@@ -33,3 +33,19 @@ password = "admin"
 
 [config]
 slavePort = 9999
+plugins = [
+  "git",
+  "github",
+  "github-oauth",
+  "token-macro",
+  "cloudbees-folder",
+  "job-dsl",
+  "view-job-filters",
+  "embeddable-build-status",
+  "groovy",
+  "dashboard-view",
+  "rich-text-publisher-plugin",
+  "console-column-plugin",
+  "docker-plugin",
+  "blueocean"
+]
