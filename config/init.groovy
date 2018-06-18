@@ -22,22 +22,11 @@ instance.setSlaveAgentPort({{cfg.config.slavePort}})
 instance.save()
 
 //what plugins should be installed (by plugin ID)
-Set<String> plugins_to_install = [
-    "git",
-    "github",
-    "github-oauth",
-    "token-macro",
-    "cloudbees-folder",
-    "job-dsl",
-    "view-job-filters",
-    "embeddable-build-status",
-    "groovy",
-    "dashboard-view",
-    "rich-text-publisher-plugin",
-    "console-column-plugin",
-    "docker-plugin",
-    "blueocean"
-]
+Set<String> plugins_to_install = []
+{{#each cfg.config.plugins as |plugin| ~}}
+plugins_to_install.add("{{plugin}}")
+{{/each ~}}
+
 //should we dynamically load plugins when installed?
 Boolean dynamicLoad = false
 
