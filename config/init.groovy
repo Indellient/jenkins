@@ -35,7 +35,8 @@ Set<String> plugins_to_install = [
     "dashboard-view",
     "rich-text-publisher-plugin",
     "console-column-plugin",
-    "docker-plugin"
+    "docker-plugin",
+    "blueocean"
 ]
 //should we dynamically load plugins when installed?
 Boolean dynamicLoad = false
