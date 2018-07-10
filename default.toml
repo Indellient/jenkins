@@ -47,5 +47,6 @@ plugins = [
   "rich-text-publisher-plugin",
   "console-column-plugin",
   "docker-plugin",
-  "blueocean"
+  "blueocean",
+  "habitat"
 ]
