@@ -1,3 +1,5 @@
+# THIS IS OLD - PLEASE USE https://github.com/Indellient/bluepipeline-plans/tree/master/jenkins INSTEAD
+
 # Habitat package: jenkins
 
 ## Description
