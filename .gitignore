@@ -1,1 +1,6 @@
+user.toml
 results/
+.terraform
+*tfvars
+*tfstate*
+.kitchen
