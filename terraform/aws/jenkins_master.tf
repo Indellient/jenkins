@@ -54,3 +54,11 @@ resource "aws_instance" "jenkins_master" {
     }
   }
 }
+
+resource "aws_route53_record" "jenkins_master" {
+  zone_id = "${var.route53_zone_id}"
+  name    = "jenkins-master-${var.prod_channel}.${var.route53_zone_name}"
+  type    = "A"
+  ttl     = "300"
+  records = ["${aws_instance.jenkins_master.public_ip}"]
+}
