@@ -7,6 +7,10 @@ variable "aws_region" {
   default = "us-west-2"
 }
 
+variable "route53_zone_id" {}
+
+variable "route53_zone_name" {}
+
 ////////////////////////////////
 // Server Settings
 
@@ -61,7 +65,7 @@ variable "prod_channel" {
 }
 
 variable "test_server_instance_type" {
-  default = "m4.xlarge"
+  default = "m5.large"
 }
 
 variable "origin" {}
