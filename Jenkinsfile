@@ -6,6 +6,11 @@ pipeline {
         git(branch: 'master', url: 'https://github.com/jmery/jenkins.git')
       }
     }
+    stage('build') {
+      steps {
+        habitat(task: 'build', directory: '.', origin: 'env.HAB_ORIGIN')
+      }
+    }
   }
   environment {
     HAB_NOCOLORING = 'true'
