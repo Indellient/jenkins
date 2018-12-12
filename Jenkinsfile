@@ -8,7 +8,7 @@ pipeline {
     }
     stage('build') {
       steps {
-        habitat(task: 'build', directory: '.', origin: '${env.HAB_ORIGIN}')
+        habitat(task: 'build', directory: '.', origin: '${HAB_ORIGIN}')
       }
     }
   }
