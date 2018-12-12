@@ -9,7 +9,7 @@ pipeline {
   }
   environment {
     HAB_NOCOLORING = 'true'
-    HAB_BLDR_URL = '\'https://bldr.habitat.sh/\''
+    HAB_BLDR_URL = 'https://bldr.habitat.sh/'
     HAB_ORIGIN = 'jmery'
   }
 }
