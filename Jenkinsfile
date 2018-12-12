@@ -3,7 +3,7 @@ pipeline {
   stages {
     stage('scm') {
       steps {
-        git(branch: 'master', url: 'ttps://github.com/jmery/jenkins.git')
+        git(branch: 'master', url: 'https://github.com/jmery/jenkins.git')
       }
     }
   }
