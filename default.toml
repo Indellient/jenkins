@@ -37,6 +37,7 @@ plugins = [
   "git",
   "github",
   "github-oauth",
+  "github-branch-source",
   "token-macro",
   "cloudbees-folder",
   "job-dsl",

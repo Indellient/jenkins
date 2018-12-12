@@ -11,14 +11,14 @@ pipeline {
         habitat(task: 'build', directory: '.', origin: '${HAB_ORIGIN}')
       }
     }
-    stage('upload') {
+    /* stage('upload') {
       steps {
         withCredentials(bindings: [string(credentialsId: 'jmery-depot-token', variable: 'HAB_AUTH_TOKEN')]) {
           habitat(task: 'upload', lastBuildFile: '${workspace}/results/last_build.env', bldrUrl: '${HAB_BLDR_URL}', authToken: '${HAB_AUTH_TOKEN}')
         }
 
       }
-    }
+    } */
   }
   environment {
     HAB_NOCOLORING = 'true'
