@@ -43,6 +43,7 @@ resource "aws_instance" "jenkins_master" {
     service {
       name     = "${var.origin}/jenkins"
       channel  = "stable"
+      strategy = "at-once"
       user_toml = "${file("files/jenkins.toml")}"
     }
 
