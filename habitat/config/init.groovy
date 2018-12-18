@@ -8,6 +8,14 @@ import java.util.logging.Logger
 
 
 def instance = Jenkins.getInstance()
+instance.setSystemMessage("Jenkins Habitat Demo")
+
+instance.save()
+
+def jenkinsLocationConfiguration = JenkinsLocationConfiguration.get()
+jenkinsLocationConfiguration.setAdminAddress("{{cfg.admin.mail}}")
+jenkinsLocationConfiguration.setUrl("{{cfg.config.url}}")
+jenkinsLocationConfiguration.save()
 
 def hudsonRealm = new HudsonPrivateSecurityRealm(false)
 hudsonRealm.createAccount("{{cfg.admin.username}}", "{{cfg.admin.password}}")
@@ -65,16 +73,16 @@ if('jenkins-enterprise' in update_sites) {
 }
 println "Using update site ${updateSite.id}."
 
-List<PluginWrapper> plugins = Jenkins.instance.pluginManager.getPlugins()
+List<PluginWrapper> plugins = instance.pluginManager.getPlugins()
 
 //check the update site(s) for latest plugins
 println 'Checking plugin updates via Plugin Manager.'
-Jenkins.instance.pluginManager.doCheckUpdatesServer()
+instance.pluginManager.doCheckUpdatesServer()
 
 //disable submitting usage statistics for privacy
-if(Jenkins.instance.isUsageStatisticsCollected()) {
+if(instance.isUsageStatisticsCollected()) {
     println "Disable submitting anonymous usage statistics to jenkins-ci.org for privacy."
-    Jenkins.instance.setNoUsageStatistics(true)
+    instance.setNoUsageStatistics(true)
     hasConfigBeenUpdated = true
 }
 
@@ -116,6 +124,6 @@ if(hasConfigBeenUpdated) {
     println "Jenkins up-to-date.  Nothing to do."
 }
 
-// Configure jobs? 
+// Configure jobs?
 
 instance.save()
