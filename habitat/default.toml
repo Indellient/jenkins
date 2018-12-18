@@ -9,7 +9,7 @@ timeout = 60
 
 [jenkins.http]
 enabled = true
-port = 80
+port = 8080
 httpListenAddress = '0.0.0.0'
 
 [jenkins.https]
@@ -28,10 +28,12 @@ port = 8009
 opts = "-Djenkins.install.runSetupWizard=false -XX:PermSize=512M -XX:MaxPermSize=2048M -Xmn128M -Xms1024M -Xmx2048M"
 
 [admin]
+mail = "foo@bar.com"
 username = "admin"
-password = "admin"
+password = "CdoVDhqA3FGxYEcmxyxUw(ptPwZVKnf"
 
 [config]
+url = "http://localhost"
 slavePort = 9999
 plugins = [
   "git",
