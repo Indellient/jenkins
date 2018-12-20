@@ -2,4 +2,5 @@
 
 exec 2>&1
 
-cp {{pkg.svc_config_path}}/init.groovy {{pkg.svc_data_path}}
+mkdir {{pkg.svc_data_path}}/init.groovy.d
+cp {{pkg.svc_config_path}}/*.groovy {{pkg.svc_data_path}}/init.groovy.d/.

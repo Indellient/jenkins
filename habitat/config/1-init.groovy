@@ -9,7 +9,6 @@ import java.util.logging.Logger
 
 def instance = Jenkins.getInstance()
 instance.setSystemMessage("Jenkins Habitat Demo")
-
 instance.save()
 
 def jenkinsLocationConfiguration = JenkinsLocationConfiguration.get()
@@ -25,7 +24,6 @@ instance.save()
 def strategy = new FullControlOnceLoggedInAuthorizationStrategy()
 strategy.setAllowAnonymousRead(false)
 instance.setAuthorizationStrategy(strategy)
-
 instance.setSlaveAgentPort({{cfg.config.slavePort}})
 instance.save()
 

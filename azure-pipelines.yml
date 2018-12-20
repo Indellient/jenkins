@@ -1,0 +1,39 @@
+queue:
+  name: Hosted Ubuntu 1604
+steps:
+- task: chef-software.vsts-habitat-tasks.vsts-habitat-tasks-install.vsts-habitat-install@1
+  displayName: 'Install Habitat'
+
+- task: chef-software.vsts-habitat-tasks.vsts-habitat-tasks-signing-key.vsts-habitat-signing-key@1
+  displayName: 'Signing Origin Key'
+  inputs:
+    habitatOrigin: 'Habitat Origin - jmery-ado'
+
+- script: |
+   echo "BUILD_NUMBER = " $BUILD_NUMBER
+   echo "BUILD_SOURCES_DIRECTORY = " $(Build.SourcesDirectory)
+   echo "BUILD_ARTIFACT_STAGING_DIRECTORY = " $(Build.ArtifactStagingDirectory)
+
+   echo $BUILD_NUMBER > buildnumber
+   cat buildnumber
+
+  displayName: 'Get Build Number'
+  env:
+    BUILD_NUMBER: $(Build.BuildNumber)
+
+- task: chef-software.vsts-habitat-tasks.vsts-habitat-tasks-build.vsts-habitat-build@1
+  displayName: 'Build Habitat plan'
+
+- task: CopyFiles@2
+  displayName: 'Copy Files to: $(Build.ArtifactStagingDirectory)'
+  inputs:
+    SourceFolder: '$(Build.SourcesDirectory)/results'
+
+    Contents: |
+     jmery-ado-jenkins-*-x86_64-linux.hart
+     last_build.env
+
+    TargetFolder: '$(Build.ArtifactStagingDirectory)'
+
+- task: PublishBuildArtifacts@1
+  displayName: 'Publish Artifact: drop'
